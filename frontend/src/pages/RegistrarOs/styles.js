@@ -19,7 +19,7 @@ export const InputText = styled.input`
 export const Button = styled.button`
     width: 20px;
     height: 20px;
-    background-color: red;
+    background-color: black;
     border-radius: 5px;
     margin-top: 10px;
     border: none;
@@ -27,8 +27,20 @@ export const Button = styled.button`
     font-weight: bold;
     &:hover{
         cursor: pointer;
-        background-color: black;
+        background-color: #2F4F4F;
     }
 `;
 
 
+export const Icon =styled.i`
+     animation: rotation 2s infinite linear;
+
+     @keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+`;

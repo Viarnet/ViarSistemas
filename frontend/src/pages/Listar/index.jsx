@@ -6,10 +6,9 @@ import { useContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { Usuarios } from "../../components/Usuarios";
-import { ModalConfirm } from "../../components/ModalConfirm";
-import { Loading } from "../../components/Loading";
-import { ModalEdit } from "../../components/ModalEdit";
 import { MiniLoading } from "../../components/MiniLoading";
+import { ModalComponent } from "../../components/ModalComponent";
+import { FormContainerEdit } from "../../components/FormContainerEdit";
 
 
 export function Listar(){
@@ -18,14 +17,15 @@ export function Listar(){
     const [usuarios, setUsuarios] = useState([]);
     const [usuario, setUsuario] = useState("");
     const [email, setEmail] = useState("");
-    const [isOpen, setIsOpen] = useState(false);
-    const [isEditOpen, setEditOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
+    const [isTitle, setIsTitle] = useState("");
+    const [isBody, setIsBody] = useState();
+    const [isConfirm, setIsConfirm] = useState();
 
     useEffect(()=>{
         (async()=>{
-            await axios.get('http://localhost:3333/users',{
+            await axios.get('http://192.168.0.95:3333/users',{
                 headers: {
                     'Authorization': `Bearer ${auth.token1}`
                   }
@@ -36,33 +36,27 @@ export function Listar(){
         })()
     },[]);
 
-    function handlesetIsOpen(){
-        setIsOpen(!isOpen);
-    }
-    function handlesetEditOpen(email, usuario){
-        setEditOpen(!isEditOpen);
-    }
-
-    async function handleDeleteUser(email){
-         await axios.get(`http://localhost:3333/delete/${email}`,{
+    async function handleDeleteUser(){
+         await axios.get(`http://192.168.0.95:3333/delete/${email}`,{
                 headers: {
                     'Authorization': `Bearer ${auth.token1}`
                   }
             }).then(({data})=>{
                 setUsuarios(data.users)
-                handlesetIsOpen();
+                auth.setModalOpen(false);
             })
     }
 
     async function handleOnSubmit(nome ,email,setor,id) {
-        await axios.post('http://localhost:3333/update', {
+        setIsLoading(true);
+        await axios.post('http://192.168.0.95:3333/update', {
           name: nome,
           email,
           role: Number(setor),
           id_colaborador: Number(id)
         }).then(({ data }) => {
           setUsuarios(data.users)
-          handlesetEditOpen();
+          setIsLoading(false);
           toast.success(`Cadastro ${email} atualizado com sucesso!`, {
             position: "top-right",
             autoClose: 3000,
@@ -76,22 +70,41 @@ export function Listar(){
         })
       }
 
+    function DeleteModalComponent(){
+        return (
+            <>
+            <h2>{usuario}</h2>
+            <h3>{email}</h3> 
+            </>
+        )
+    }
+
     function handleModalOpen(email, usuario){
         setEmail(email);
         setUsuario(usuario);
-        handlesetIsOpen();
-        
-       
+        setIsTitle("Deseja Excluir esse Usuario?")
+        setIsBody(<DeleteModalComponent/>)
+        setIsConfirm(true);
+        auth.setModalOpen(true);       
     }
     function handleModalEditOpen(email, usuario){
         setEmail(email);
         setUsuario(usuario);
-        handlesetEditOpen();
+        setIsTitle("Atualizar Cadastro")
+        setIsBody(<FormContainerEdit email={email} handleOnSubmit={handleOnSubmit} loading={isLoading}/>)
+        setIsConfirm(false);
+        auth.setModalOpen(true);
     }
 
     return (
         <Container>
-            
+            {auth.modalOpen && <ModalComponent
+            isTitle={isTitle}
+            isConfirm={isConfirm}
+            handleYes={handleDeleteUser}
+            >
+            {isBody}
+            </ModalComponent> }
             <ToastContainer
                 position="top-center"
                 autoClose={2000}
@@ -103,8 +116,6 @@ export function Listar(){
                 draggable
                 theme="dark"
             />
-            {isOpen && <ModalConfirm usuario={usuario} email={email} handleDeleteUser={handleDeleteUser} handlesetIsOpen={handlesetIsOpen}/>}
-            {isEditOpen && <ModalEdit handleModalEditOpen={handleModalEditOpen} usuario={usuario} email={email} handleOnSubmit={handleOnSubmit}/>}
             <h1>Usuarios Cadastrados</h1>
             {isLoading && <MiniLoading/>}
             {usuarios.map((usuario)=> <Usuarios usuario={usuario.name} email={usuario.email} id={usuario.id} handleModalOpen={handleModalOpen} handleModalEditOpen={handleModalEditOpen}key={usuario.id}/> )}

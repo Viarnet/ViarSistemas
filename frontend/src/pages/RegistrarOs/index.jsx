@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 import { Loading } from "../../components/Loading";
 import { Modal } from "../../components/Modal";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
-import { Container, InputText, Button } from "./styles";
+import { Container, InputText, Button, Icon } from "./styles";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ButtonComponent } from "../../components/Button";
 
 import axios from 'axios';
 import { MiniLoading } from "../../components/MiniLoading";
@@ -35,7 +36,7 @@ export const RegistrarOs = () => {
 
         clientesInputs[index] = { id: clientesInputs[index].id, nome: clientesInputs[index].nome , status: "loading"};
         setClientesInputs([...clientesInputs]);
-        const result = await axios.get(`http://localhost:3000/os/getcontracts/${cliente.toUpperCase()}`)
+        const result = await axios.get(`http://192.168.0.95:3000/os/getcontracts/${cliente.toUpperCase()}`)
         if (result.data.status == 0 || result.data.status == 404) {
             clientesInputs[index] = { id: clientesInputs[index].id, nome: clientesInputs[index].nome , IdCliente: result.data.IdCliente, status: "false"};
             setClientesInputs([...clientesInputs]);
@@ -62,6 +63,7 @@ export const RegistrarOs = () => {
 
     async function handleCreateOs() {
         let errorInputs  = clientesInputs.filter(contrato => contrato.status == "false");
+        console.log(clientesInputs.length);
         if(errorInputs.length > 0){
             toast.error(`Não foi possível encontrar ${errorInputs.length} cliente(s).`, {
                 position: "top-center",
@@ -74,7 +76,7 @@ export const RegistrarOs = () => {
                 theme: "dark",
             });
         }else{
-            const result = await axios.post("http://localhost:3000/os/create",
+            const result = await axios.post("http://192.168.0.95:3000/os/create",
         {
             arrayContratos: clientesInputs,
             mensagemPadraoAbertura: messagem1,
@@ -132,6 +134,7 @@ export const RegistrarOs = () => {
             {!loading && <Button
                 style={{
                     width: '30px',
+                    height: 30,
                     borderRadius: '8px'
                 }}
                 onClick={handleAddInputCliente}
@@ -149,15 +152,18 @@ export const RegistrarOs = () => {
                         error={true}
                     />
                     
-                    {cliente.status == 'true' && <i className='bx bx-check' style={{color: 'green',display: 'flex', alignItems: 'center', marginRight: '10px', fontSize: '26px'}}></i>}
-                    {cliente.status == 'false' && <i className='bx bx-x' style={{color: 'red',display: 'flex', alignItems: 'center', marginRight: '10px', fontSize: '26px'}}></i>}
-                    {cliente.status == 'loading' && <MiniLoading/>}
-                    <Button onClick={() => { handleRemoveInputPhone(index) }}><i className='bx bx-trash'></i></Button>
+                    {cliente.status == 'true' &&  <i className='bx bx-check' style={{color: 'green',display: 'flex', alignItems: 'center', marginRight: '10px', fontSize: '26px'}}></i>}
+                    {cliente.status == 'false' &&  <i className='bx bx-x' style={{color: 'red',display: 'flex', alignItems: 'center', marginRight: '10px', fontSize: '26px'}}></i>}
+                    {cliente.status == 'loading' &&  <Icon className='bx bx-loader-alt' style={{color: 'black',display: 'flex', alignItems: 'center', marginRight: '10px', fontSize: '26px'}}></Icon>}
+                    <div>
+                        <Button onClick={() => { handleRemoveInputPhone(index) }} style={{width: 30, height: 30}}><i className='bx bx-trash'></i></Button>
+                    </div>
                 </div>
             ))}
-            <div style={{position: 'relative' }}>
-                {!loading && <Button style={{ width: '80px', height: '30px', borderRadius: '8px'}} onClick={handleCreateOs}>Registrar</Button>}
-            </div>
+           {!loading && <div style={{position: 'relative' }}>
+                <ButtonComponent Click={handleCreateOs}>Registrar</ButtonComponent>
+                
+            </div>}
         </Container>
     );
 }

@@ -1,0 +1,17 @@
+.check {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 0.15em;
+  margin-right: 0.5em;
+  border: 0.15em solid #2F4F4F;
+  outline: none;
+  cursor: pointer;
+
+}
+
+.check:checked{
+    background-color:black;
+    position: relative;
+  }

@@ -14,7 +14,6 @@ export default {
 
         arrayContratos.forEach(async (contrato) => {
             const result = await insertOS(contrato.id, contrato.IdCliente, mensagemPadraoAbertura, mensagemPadraoEncerra, protocolo, idAtendente);
-            console.log(result)
         });
         return res.status(200).json({message: 'Executado com sucesso'});
     }

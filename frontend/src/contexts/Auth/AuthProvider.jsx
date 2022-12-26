@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token1, setToken1] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [modalOpen , setModalOpen] = useState(false);
     const api = useApi();
 
     useEffect(() => {
@@ -54,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ user, signin, signout, loading, token1}}>
+        <AuthContext.Provider value={{ user, signin, signout, loading, token1, modalOpen , setModalOpen}}>
             {children}
         </AuthContext.Provider>
     );

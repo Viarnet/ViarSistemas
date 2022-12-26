@@ -1,9 +1,9 @@
-import './styles.css'
+import { Container } from './styles.js'
 
-export function MiniLoading() {
+export function MiniLoading({color}) {
     return (
         
-            <div className="lds-ring"><div></div><div></div><div></div></div>
+            <Container><div></div><div></div><div></div></Container>
 
     )
 }

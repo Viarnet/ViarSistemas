@@ -1,4 +1,5 @@
 import { Button, Container, FormContainer, InputText } from "./style";
+import { ButtonComponent } from "../../components/Button";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MiniLoading } from '../../components/MiniLoading'
@@ -28,7 +29,7 @@ export function Cadastrar() {
 
         if (email && nome && senha && setor && id) {
             setLoading(true)
-            await axios.post('http://localhost:3333/create', {
+            await axios.post('http://192.168.0.95:3333/create', {
                 name: nome,
                 email,
                 password: senha,
@@ -135,8 +136,7 @@ export function Cadastrar() {
                 <InputText type='number' placeholder="ID do Colaborador IXC"
                     value={id}
                     onChange={(e) => { setId(e.target.value) }} />
-                <Button type='button' onClick={() => { handleOnSubmit() }} disabled={loading}>{loading && <MiniLoading />}{!loading && "Cadastrar"}</Button>
-
+                    <ButtonComponent Click={handleOnSubmit} loading={loading}>Cadastrar</ButtonComponent>
             </FormContainer>
         </Container>
     );

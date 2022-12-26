@@ -35,9 +35,7 @@ export const FormContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 400px;
-    
-
-`;
+  `;
 
 export const Button = styled.button`
     background-color: ${props => props.disabled ? "#666" : "#1d1b31"};

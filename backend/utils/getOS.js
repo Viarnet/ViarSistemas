@@ -30,6 +30,9 @@ async function getOS(id){
                     id: os.id,
                     endereco: os.endereco,
                     nomeCliente: await getNome(os.id_cliente),
+                    idSetor: os.setor,
+                    idAssunto: os.id_assunto,
+                    mensagem: os.mensagem,
                     isAdded: false
                 })
             }

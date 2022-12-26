@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(router);
 
-app.listen(3333, ()=> console.log(`🚀BackendAuth is running on http://localhost:${port}`));
+app.listen(3333, ()=> console.log(`🚀BackendAuth is running on http://192.168.0.95:${port}`));
 
 (async()=>{
     await sequelize.sync();

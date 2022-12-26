@@ -54,36 +54,27 @@ body.active-modal {
     justify-content: space-between;
 }
 
-.buttons{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.divSelect{
+    margin: auto;
+    display: grid;
 }
 
-.buttons button {
-    width: 100%;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px;
-    border: none;
+.select-space{
+    padding-top: 4%;
+    margin: auto;
 }
 
-.sim{
-    background-color: #028508;
-    color: #f1f1f1;
-    font-weight: 900;
-}
-.sim:hover{
-    background-color: #023605;
-
-}
-
-.nao{
-    background-color: #960505;
-    color: #f1f1f1;
-    font-weight: 900;
+.select-cus{
+    background-color: black;
+    color: white;
+    text-align: center;
+    width: fit-content;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
-.nao:hover{
-    background-color: #550202;
+.divBotao{
+    padding-top: 10%;
+    margin: auto;
 }
