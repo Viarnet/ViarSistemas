@@ -135,7 +135,8 @@ export const RegistrarOs = () => {
                 style={{
                     width: '30px',
                     height: 30,
-                    borderRadius: '8px'
+                    borderRadius: '8px',
+                    fontSize: '20px'
                 }}
                 onClick={handleAddInputCliente}
             >+
@@ -156,7 +157,7 @@ export const RegistrarOs = () => {
                     {cliente.status == 'false' &&  <i className='bx bx-x' style={{color: 'red',display: 'flex', alignItems: 'center', marginRight: '10px', fontSize: '26px'}}></i>}
                     {cliente.status == 'loading' &&  <Icon className='bx bx-loader-alt' style={{color: 'black',display: 'flex', alignItems: 'center', marginRight: '10px', fontSize: '26px'}}></Icon>}
                     <div>
-                        <Button onClick={() => { handleRemoveInputPhone(index) }} style={{width: 30, height: 30}}><i className='bx bx-trash'></i></Button>
+                        <Button onClick={() => { handleRemoveInputPhone(index) }} style={{width: 30, height: 30}}><i className='bx bx-trash' style={{fontSize: '20px'}}></i></Button>
                     </div>
                 </div>
             ))}

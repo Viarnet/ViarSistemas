@@ -77,7 +77,7 @@ export const Container1 = styled.div`
     border: 1px solid #666;
     padding: 5px;
     width: 40rem;
-    height: 4rem;
+    overflow: auto;
     border-radius: 5px;
     margin: 5px;
     &:hover {

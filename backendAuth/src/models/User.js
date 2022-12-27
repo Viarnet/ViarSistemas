@@ -29,3 +29,8 @@ export const User = sequelize.define('User',{
 }, {
   // Other model options go here
 });
+
+User.associate = (models) => {
+  User.hasOne(models.Atendimentos,
+    { foreignKey: 'id_colaborador', as: 'atendimentos' });
+};

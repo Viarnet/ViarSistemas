@@ -1,13 +1,17 @@
 import { useContext, useState } from "react";
 import { Container, Button, Nome, Endereco, Id, ContainerLeft, ContainerRight, Container1, ButtonEncaminhar } from "./styles";
 import { ToastContainer, toast } from 'react-toastify';
-import './style.css'
-import 'react-toastify/dist/ReactToastify.css';
 import { ModalSelect } from "../../components/ModalSelect"
-import axios from 'axios';
 import { ButtonComponent } from "../../components/Button";
 import { ModalComponent } from "../../components/ModalComponent";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
+import { MiniLoading } from "../../components/MiniLoading";
+import { Pagenation } from "../../components/Pagenation/Pagenation";
+
+import './style.css'
+import 'react-toastify/dist/ReactToastify.css';
+
+import axios from 'axios';
 
 export const EncaminharOS = () => {
     const Provider = useContext(AuthContext)
@@ -16,6 +20,9 @@ export const EncaminharOS = () => {
     const [loading, setLoading] = useState(false);
     const [modal, setModal] = useState(false);
     const [tecnico, setTecnico] = useState();
+    const [term, setTerm] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [osPerPage, setOsPerPage] = useState(20);
 
     async function handleSearch(id){
         setLoading(true);
@@ -31,6 +38,11 @@ export const EncaminharOS = () => {
             })
         }
     }
+
+    const indexOfLastOs = currentPage * osPerPage;
+    const indexOfFirstOs = indexOfLastOs - osPerPage;
+    const currentOs = os.slice(indexOfFirstOs, indexOfLastOs);
+
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -69,8 +81,10 @@ export const EncaminharOS = () => {
                     progress: undefined,
                     theme: "dark",
                 });
-                await sleep(2000)
-                window.location.reload(false);
+                setLoading(true);
+                await sleep(2000);
+                setLoading(false);
+                handleSearch(select);
             }else{
                 toast.error('Nenhuma O.S foi selecionada', {
                     position: "top-center",
@@ -85,6 +99,8 @@ export const EncaminharOS = () => {
             }
         }
     }
+
+    const paginate = (pageNumbers) => setCurrentPage(pageNumbers)
 
     return (
         <Container style={{backgroundColor : "#E4E9F7"}}>
@@ -104,19 +120,31 @@ export const EncaminharOS = () => {
                 theme="dark"
             />
             
-            <div style={{paddingBottom : "5%"}}>
+            <div style={{paddingBottom : "2%"}}>
             <h1>Encaminhar Ordens de Serviço</h1>
             </div>
-            <div style={{display: "flex", columnGap: "10px"}}>
+            <div style={{display: "flex", columnGap: "10px", paddingBottom: '2%'}}>
                 <label htmlFor="sel" style={{paddingTop: '2px'}}>Selecione o Assunto:</label>
                 <select value={select} onChange={e=>setSelect(e.target.value)} style={{border: '2px solid black', borderRadius: '6px'}}>
                     <option>Recolha de equipamentos</option>
                     <option>Liberação de portas</option>
                 </select>
+                {os.length > 0 ? <input type="text" className="search" id="search" onChange={(e) => {setTerm(e.target.value)}} placeholder="Filtrar..." style={{border: '2px solid black', borderRadius: '6px', textAlign: 'center'}}></input> : <></>}
                 <Button onClick={() => { handleSearch(select) }}><i className='bx bx-search'></i></Button>
             </div>
-            <br />
-            {os.map((ordem, index)=> (
+            {loading && <MiniLoading/>}
+            <div style={{paddingTop : '20px'}}></div>
+            {term == "" && os.length > 10 ? 
+            <Pagenation osPerPage={osPerPage} totalOs={os.length} os={currentOs} paginate={paginate}/>
+            : os.filter((val)=>{
+                if(term == ""){
+                    return val;
+                }else if (val.nomeCliente.toLowerCase().includes(term.toLowerCase())){
+                    return val
+                }else if(val.endereco.toLowerCase().includes(term.toLowerCase())){
+                    return val
+                }
+            }).map((ordem, index)=> (
                 <Container1 key={ordem.id} id='divOS'>
                     <ContainerLeft>
                         <Nome>{ordem.nomeCliente}</Nome>
@@ -128,8 +156,9 @@ export const EncaminharOS = () => {
                     </ContainerRight>
                 </Container1>
             ))}
-            <div style={{paddingBottom: '10px'}}>
-                <ButtonComponent Click={handlesetIsOpen} loading={loading}>Encaminhar</ButtonComponent>
+            <div style={{paddingBottom: '20px'}}></div>
+            <div style={{paddingBottom: '10px', paddingTop: '3px'}}>
+            {os.length > 0 ? <ButtonComponent Click={handlesetIsOpen}>Encaminhar</ButtonComponent> : <></>}
             </div>
             {modal && <ModalSelect tecnico={tecnico} handleSetTecnico={setTecnico} handleRegister={handleRegister}/>}
         </Container>

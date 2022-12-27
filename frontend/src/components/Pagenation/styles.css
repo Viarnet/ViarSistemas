@@ -1,0 +1,36 @@
+.pagination{
+    border: 1px solid #667;
+    height: fit-content;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+}
+
+.page-item{
+    list-style: none;
+    width: 24px;
+}
+
+.page-item:hover, .page-link:hover{
+    background-color: #2F4F4F;
+    color: white;
+}
+
+.page-link{
+    cursor: pointer;
+    font-size: 14px;
+    color: black;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-align: center;
+    text-decoration: none
+}
+.teste{
+    border: 0.5px solid #667;
+    border-radius:1px;
+}
+
+.active{
+    background-color: #667;
+    border-radius:1px;
+}

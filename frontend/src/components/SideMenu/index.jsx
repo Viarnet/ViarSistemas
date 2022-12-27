@@ -68,13 +68,13 @@ function SideMenu() {
         <div className="iocn-link" onClick={()=>setShowSubMenu3(!showSubMenu3)}>
           <a href="#">
             <i className='bx bx-spreadsheet' ></i>
-            <span className="link_name">O.S</span>
+            <span className="link_name">Suporte</span>
           </a>
           <i className='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul className="sub-menu">
-          <li><a className="link_name" href="#">O.S</a></li>
-          <li><Link to='os'>Registrar O.S</Link></li>
+          <li><a className="link_name" href="#">Suporte</a></li>
+          <li><Link to='registrar'>Registrar O.S</Link></li>
           <li><Link to='encaminhar'>Encaminhar O.S</Link></li>
         </ul>
       </li>)}

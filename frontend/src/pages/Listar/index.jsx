@@ -83,7 +83,7 @@ export function Listar(){
         setEmail(email);
         setUsuario(usuario);
         setIsTitle("Deseja Excluir esse Usuario?")
-        setIsBody(<DeleteModalComponent/>)
+        setIsBody(<DeleteModalComponent />)
         setIsConfirm(true);
         auth.setModalOpen(true);       
     }

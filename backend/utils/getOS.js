@@ -18,7 +18,7 @@ async function getOS(id){
             'query': id,
             'oper': '=',
             'page': '1',
-            'rp': '20',
+            'rp': '1000',
             'sortname': 'su_oss_chamado.id',
             'sortorder': 'desc'
         }

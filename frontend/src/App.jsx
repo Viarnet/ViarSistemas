@@ -18,7 +18,7 @@ function App() {
     <Route path='/login' element={ <Login /> }/>
     <Route path='/' element={ <Layout /> }>
       <Route path='home' element={ <RequireAuth role={0}><Home /></RequireAuth> }/>
-      <Route path='os' element={ <RequireAuth role={3}><RegistrarOs /></RequireAuth> }/>
+      <Route path='registrar' element={ <RequireAuth role={3}><RegistrarOs /></RequireAuth> }/>
       <Route path='encaminhar' element={ <RequireAuth role={3}><EncaminharOS /></RequireAuth> }/>
       <Route path='privadaadmin' element={ <RequireAuth role={6}><PrivateAdmin /></RequireAuth> }/>
       <Route path='cadastrar' element={ <RequireAuth role={6}><Cadastrar /></RequireAuth> }/>
