@@ -9,7 +9,8 @@ export async function deleteUser(req, res) {
       const user = await User.findOneAndRemove({email});
       if(user){
         const atendimentos = await Atendimento.deleteMany({user: user.id});
-        return res.status(200).json({message: "Usuario e Atendimentos removido com sucesso!"});
+        const users = await User.find();
+        return res.status(200).json({message: "Usuario e Atendimentos removido com sucesso!", users});
       }else return res.status(400).json({ error: "Usuario não encontrado!" });
     }else return res.status(400).json({ error: "Informe o Email do Usuario!" });
   } catch (error) {

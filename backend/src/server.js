@@ -5,7 +5,11 @@ import { router } from './router.js';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+import cors from 'cors';
+
 const app = express();
+
+
 
 mongoose.connect('mongodb://viarnet:viar1851@localhost:27017/?authMechanism=DEFAULT')
   .then(()=>{
@@ -17,11 +21,12 @@ mongoose.connect('mongodb://viarnet:viar1851@localhost:27017/?authMechanism=DEFA
       res.setHeader('Access-Control-Allow-Headers', '*');
       next();
     });
+    app.use(cors());
     app.use(express.json());
     app.use(router);
     app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
-    app.listen(3001, () => {
+    app.listen(3333, () => {
       console.log(`🚀 Server is running on http://localhost:${port}`);
     });
   })

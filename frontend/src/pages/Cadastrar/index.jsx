@@ -29,7 +29,7 @@ export function Cadastrar() {
 
         if (email && nome && senha && setor && id) {
             setLoading(true)
-            await axios.post('http://192.168.0.95:3333/create', {
+            await axios.post('http://192.168.0.95:3333/users/create', {
                 name: nome,
                 email,
                 password: senha,
@@ -37,7 +37,7 @@ export function Cadastrar() {
                 id_colaborador: Number(id)
             }).then(({ data }) => {
                 if (data.error) {
-                    if (data.error == "User exists") {
+                    if (data.error == "O usuario já existe!") {
                         setLoading(false)
                         toast.error("O Cadastro já Existe!", {
                             position: "top-right",

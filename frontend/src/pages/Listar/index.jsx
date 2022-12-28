@@ -37,7 +37,7 @@ export function Listar(){
     },[]);
 
     async function handleDeleteUser(){
-         await axios.get(`http://192.168.0.95:3333/delete/${email}`,{
+         await axios.get(`http://192.168.0.95:3333/user/${email}/delete`,{
                 headers: {
                     'Authorization': `Bearer ${auth.token1}`
                   }
@@ -48,15 +48,16 @@ export function Listar(){
     }
 
     async function handleOnSubmit(nome ,email,setor,id) {
-        setIsLoading(true);
-        await axios.post('http://192.168.0.95:3333/update', {
+        //setIsLoading(true);
+        await axios.post('http://192.168.0.95:3333/users/update', {
           name: nome,
           email,
           role: Number(setor),
           id_colaborador: Number(id)
         }).then(({ data }) => {
-          setUsuarios(data.users)
-          setIsLoading(false);
+          setUsuarios(data.users);
+          auth.setModalOpen(false);
+          //setIsLoading(false);
           toast.success(`Cadastro ${email} atualizado com sucesso!`, {
             position: "top-right",
             autoClose: 3000,

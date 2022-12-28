@@ -36,7 +36,7 @@ export const RegistrarOs = () => {
 
         clientesInputs[index] = { id: clientesInputs[index].id, nome: clientesInputs[index].nome , status: "loading"};
         setClientesInputs([...clientesInputs]);
-        const result = await axios.get(`http://192.168.0.95:3000/os/getcontracts/${cliente.toUpperCase()}`)
+        const result = await axios.get(`http://192.168.0.95:3333/os/getcontracts/${cliente.toUpperCase()}`)
         if (result.data.status == 0 || result.data.status == 404) {
             clientesInputs[index] = { id: clientesInputs[index].id, nome: clientesInputs[index].nome , IdCliente: result.data.IdCliente, status: "false"};
             setClientesInputs([...clientesInputs]);
@@ -76,7 +76,7 @@ export const RegistrarOs = () => {
                 theme: "dark",
             });
         }else{
-            const result = await axios.post("http://192.168.0.95:3000/os/create",
+            const result = await axios.post("http://192.168.0.95:3333/os/create",
         {
             arrayContratos: clientesInputs,
             mensagemPadraoAbertura: messagem1,

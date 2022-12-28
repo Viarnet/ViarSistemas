@@ -27,12 +27,12 @@ export const EncaminharOS = () => {
     async function handleSearch(id){
         setLoading(true);
         if(id == 'Liberação de portas'){
-            await axios.get('http://192.168.0.95:3000/os/getOS/31').then(({data})=>{
+            await axios.get('http://192.168.0.95:3333/os/getOS/31').then(({data})=>{
                 setOS(data.ordem)
                 setLoading(false);
             })
         }else{
-            await axios.get('http://192.168.0.95:3000/os/getOS/33').then(({data})=>{
+            await axios.get('http://192.168.0.95:3333/os/getOS/33').then(({data})=>{
                 setOS(data.ordem)
                 setLoading(false);
             })
@@ -67,7 +67,7 @@ export const EncaminharOS = () => {
                 return ordem.isAdded == true;
             })
             if(selecionadas.length >= 1){
-                const result = await axios.post('http://192.168.0.95:3000/os/edit', {
+                const result = await axios.post('http://192.168.0.95:3333/os/edit', {
                     arrayOS : selecionadas,
                     idTecnico: tecnico
                 })

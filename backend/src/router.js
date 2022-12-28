@@ -36,7 +36,7 @@ const upload = multer({
 router.post('/users/create', createUser);
 
 //Atualizar usuario
-router.post('/users/update', AuthMiddlewares, updateUser);
+router.post('/users/update', updateUser);
 
 //Listar todos usuarios
 router.get('/users', AuthMiddlewares, listUsers);
@@ -64,13 +64,13 @@ router.get('/atendimentos/:userId', AuthMiddlewares, listAtendimentosByUser);
 router.get('/atendimentos', AuthMiddlewares, listAtendimentos);
 
 //Buscar contratos do cliente
-router.get('/os/getcontracts/:nomeCliente', AuthMiddlewares, findContract);
+router.get('/os/getcontracts/:nomeCliente',  findContract);
 
 //Buscar ordens por assunto
-router.get('/os/getOS/:assunto', AuthMiddlewares, findOrdem);
+router.get('/os/getOS/:assunto',  findOrdem);
 
 //Criar OS
-router.post('/os/create', AuthMiddlewares, createOS);
+router.post('/os/create',  createOS);
 
 //Editar OS
-router.post('/os/edit', AuthMiddlewares, createOS);
+router.post('/os/edit',  createOS);

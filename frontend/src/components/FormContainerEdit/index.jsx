@@ -6,7 +6,7 @@ import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { ButtonComponent } from "../Button";
 
 export function FormContainerEdit({ email, handleOnSubmit, loading}) {
-  console.log(loading)
+  console.log(email)
   const options = [
     { value: 0, label: 'Comercial' },
     { value: 3, label: 'Suporte' },
@@ -25,9 +25,10 @@ export function FormContainerEdit({ email, handleOnSubmit, loading}) {
           'Authorization': `Bearer ${auth.token1}`
         }
       }).then(({ data }) => {
-        setNome(data.user.name);
-        setSetor(data.user.role);
-        setId(data.user.id_colaborador);
+        console.log(data)
+        setNome(data.user[0].name);
+        setSetor(data.user[0].role);
+        setId(data.user[0].id_colaborador);
       })
     })()
   }, [])
