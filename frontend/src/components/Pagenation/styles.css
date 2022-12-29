@@ -34,3 +34,28 @@
     background-color: #667;
     border-radius:1px;
 }
+
+.container-principal{
+    height: 50vh;
+    overflow-y: auto;
+}
+
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(61, 61, 61);
+  border-radius: 20px;
+
+}

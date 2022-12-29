@@ -64,6 +64,7 @@ export function Pagenation({ osPerPage, totalOs, os, paginate }) {
 
     return (
         <>
+        <div className="container-principal">
             {os.map((ordem, index) => (
                 <Container1 key={ordem.id} id='divOS'>
                     <ContainerLeft>
@@ -76,6 +77,7 @@ export function Pagenation({ osPerPage, totalOs, os, paginate }) {
                     </ContainerRight>
                 </Container1>
             ))}
+            </div>
             <nav>
                 <ul className="pagination">
                     <button onClick={handleBackInit}>{"<<-"}</button>
@@ -99,8 +101,9 @@ export function Pagenation({ osPerPage, totalOs, os, paginate }) {
                     <button onClick={handleFrontOne}>{"->"}</button>
                     <button onClick={handleFrontEnd}>{"->>"}</button>
                 </ul>
-                <small style={{display: 'flex', justifyContent:'center'}}>{`Página ${selectedId} de ${Math.ceil(totalOs / osPerPage)}`}</small>
+                <small style={{display: 'flex', justifyContent:'center', marginBottom: "-30px"}}>{`Página ${selectedId} de ${Math.ceil(totalOs / osPerPage)}`}</small>
             </nav>
+        
         </>
     );
 }
