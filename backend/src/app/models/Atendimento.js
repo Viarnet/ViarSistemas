@@ -6,56 +6,69 @@ export const Atendimento = model('Atendimento', new Schema({
     required: true,
   },
   alteracaodetitularidade: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   }, 
   atribuiripfixo: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   bellunoresolvido: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   gerouvisita: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   huggy: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   laudotecnico: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   outrossetores: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   posbelluno: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   posos: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   posicaodeos: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   presencial: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   telefonicossac: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
   visitatecnica: {
-    type: String,
+    type: Number,
     required: true,
+    default: 0,
   },
  
   user: {

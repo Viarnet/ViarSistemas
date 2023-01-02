@@ -74,6 +74,7 @@ function SideMenu() {
         </div>
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Suporte</a></li>
+          <li><Link to='atendimentos'>Atendimentos</Link></li>
           <li><Link to='registrar'>Registrar O.S</Link></li>
           <li><Link to='encaminhar'>Encaminhar O.S</Link></li>
         </ul>

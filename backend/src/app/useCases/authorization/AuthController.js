@@ -9,13 +9,16 @@ export async function AuthController(req, res) {
   try {
     const { email, password } = req.body;
         
-    const user = await User.findOne({ where: { email }});
+    const user = await User.findOne({ email });
+    console.log(user)
 
     if(!user){
         return res.json({ error: "User not found!"});
     }
 
     const isValuePassword = await compare(password, user.password);
+    console.log(isValuePassword)
+    
 
     if(!isValuePassword){
         return res.json({ error: "Password invalid!" });

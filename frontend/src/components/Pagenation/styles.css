@@ -32,6 +32,7 @@
 
 .active{
     background-color: #667;
+    color: white;
     border-radius:1px;
 }
 
@@ -58,4 +59,13 @@
   background-color: rgb(61, 61, 61);
   border-radius: 20px;
 
+}
+
+button{
+    overflow: auto;
+    
+
+}
+button :hover{
+    cursor: pointer;
 }

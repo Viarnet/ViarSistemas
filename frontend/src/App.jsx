@@ -1,4 +1,3 @@
-
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './layout';
@@ -10,6 +9,7 @@ import { PrivateAdmin } from './pages/PrivateAdmin';
 import { EncaminharOS } from './pages/EncaminharOS';
 import { Cadastrar } from './pages/Cadastrar';
 import { Listar } from './pages/Listar';
+import { Atendimentos } from './pages/Atendimentos';
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
     <Route path='/login' element={ <Login /> }/>
     <Route path='/' element={ <Layout /> }>
       <Route path='home' element={ <RequireAuth role={0}><Home /></RequireAuth> }/>
+      <Route path='atendimentos' element={ <RequireAuth role={3}><Atendimentos /></RequireAuth> }/>
       <Route path='registrar' element={ <RequireAuth role={3}><RegistrarOs /></RequireAuth> }/>
       <Route path='encaminhar' element={ <RequireAuth role={3}><EncaminharOS /></RequireAuth> }/>
       <Route path='privadaadmin' element={ <RequireAuth role={6}><PrivateAdmin /></RequireAuth> }/>

@@ -55,7 +55,7 @@ router.post('/validate', AuthMiddlewares, TokenValidate);
 router.post('/auth', AuthController);
 
 //Criar ou Atualizar Atendimento
-router.post('/atendimentos/create', AuthMiddlewares, createAtendimento);
+router.post('/atendimentos/create', createAtendimento);
 
 //Listar Atendimentos do usuario
 router.get('/atendimentos/:userId', AuthMiddlewares, listAtendimentosByUser);

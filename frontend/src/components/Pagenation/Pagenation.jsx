@@ -79,18 +79,11 @@ export function Pagenation({ osPerPage, totalOs, os, paginate }) {
             ))}
             </div>
             <nav>
+                <div style={{paddingTop: '2rem'}}></div>
                 <ul className="pagination">
-                    <button onClick={handleBackInit}>{"<<-"}</button>
-                    <button onClick={handleBackOne}>{"<-"}</button>
+                    <button onClick={handleBackInit}><i className='bx bx-chevrons-left'></i></button>
+                    <button onClick={handleBackOne}><i className='bx bx-left-arrow-alt'></i></button>
                     {pages.map(number => (
-
-                        // <li key={number} className={`page-item`}>
-                        //     <div className="teste" >
-                        //     <a href="#" onClick={() => paginate(number)} className="page-link">
-                        //         {number}
-                        //     </a>
-                        //     </div>
-                        // </li>
                         <ListNumberPages
                             number={number}
                             key={number}
@@ -98,8 +91,8 @@ export function Pagenation({ osPerPage, totalOs, os, paginate }) {
                             Click={() => handleClick(number)}
                         />
                     ))}
-                    <button onClick={handleFrontOne}>{"->"}</button>
-                    <button onClick={handleFrontEnd}>{"->>"}</button>
+                    <button onClick={handleFrontOne}><i className='bx bx-right-arrow-alt'></i></button>
+                    <button onClick={handleFrontEnd}><i className='bx bx-chevrons-right'></i></button>
                 </ul>
                 <small style={{display: 'flex', justifyContent:'center', marginBottom: "-30px"}}>{`Página ${selectedId} de ${Math.ceil(totalOs / osPerPage)}`}</small>
             </nav>
