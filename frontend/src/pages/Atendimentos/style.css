@@ -4,3 +4,7 @@
     margin: auto;
     padding-bottom: 20px;
 }
+
+input::-webkit-calendar-picker-indicator{
+    opacity: 10;
+}

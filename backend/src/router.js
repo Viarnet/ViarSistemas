@@ -1,6 +1,12 @@
 import { Router } from 'express';
 import multer from 'multer';
 import path from 'node:path';
+import * as url from 'url';
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+import { v4 as uuidv4 } from 'uuid';
+
 import { AuthMiddlewares } from './app/middlewares/auth.js';
 import { createAtendimento } from './app/useCases/atendimentos/createAtendimento.js';
 import { listAtendimentos } from './app/useCases/atendimentos/listAtendimentos.js';
@@ -10,6 +16,8 @@ import { TokenValidate } from './app/useCases/authorization/TokenValidate.js';
 import { createOS } from './app/useCases/ordens/createOS.js';
 import { findContract } from './app/useCases/ordens/findContract.js';
 import { findOrdem } from './app/useCases/ordens/findOrdem.js';
+import { createRoteador } from './app/useCases/roteadores/createRoteador.js';
+import { listRoteadores } from './app/useCases/roteadores/listRoteadores.js';
 import { createUser } from './app/useCases/users/createUser.js';
 import { deleteUser } from './app/useCases/users/deleteUser.js';
 import { listUser } from './app/useCases/users/listUser.js';
@@ -24,13 +32,16 @@ const upload = multer({
       callback(null, path.resolve(__dirname, '..', 'uploads'));
     },
     filename(req, file, callback){
-      callback(null, `${Date.now()}-${file.originalname}`);
+      callback(null, `${uuidv4()}.jpg`);
     },
   }),
 });
 
-//Create product
-//router.post('/products', upload.single('image'), createProducts);
+//Criar Roteador
+router.post('/roteadores/create', upload.single('image'), createRoteador);
+
+//Listar Roteadores
+router.get('/roteadores', listRoteadores);
 
 //Criar usuario
 router.post('/users/create', createUser);

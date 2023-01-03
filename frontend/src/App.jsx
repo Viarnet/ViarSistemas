@@ -10,6 +10,7 @@ import { EncaminharOS } from './pages/EncaminharOS';
 import { Cadastrar } from './pages/Cadastrar';
 import { Listar } from './pages/Listar';
 import { Atendimentos } from './pages/Atendimentos';
+import { Gerencia } from './pages/Gerencia';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
     <Route path='/' element={ <Layout /> }>
       <Route path='home' element={ <RequireAuth role={0}><Home /></RequireAuth> }/>
       <Route path='atendimentos' element={ <RequireAuth role={3}><Atendimentos /></RequireAuth> }/>
+      <Route path='gerencia' element={ <RequireAuth role={5}><Gerencia /></RequireAuth> }/>
       <Route path='registrar' element={ <RequireAuth role={3}><RegistrarOs /></RequireAuth> }/>
       <Route path='encaminhar' element={ <RequireAuth role={3}><EncaminharOS /></RequireAuth> }/>
       <Route path='privadaadmin' element={ <RequireAuth role={6}><PrivateAdmin /></RequireAuth> }/>

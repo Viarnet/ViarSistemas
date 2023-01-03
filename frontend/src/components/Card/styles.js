@@ -7,14 +7,16 @@ export const Container = styled.div`
     border: 1px solid #666;
     padding: 5px;
     width: 16rem;
-    height: 8rem;
+    height: 6rem;
     border-radius: 8px;
     margin: 5px;
     
 `;
+
+
 export const Button = styled.button`
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-color: black;
     border-radius: 5px;
     margin-top: 2px;
@@ -44,22 +46,22 @@ export const ContainerLeft = styled.div`
 
 
     p{
-        padding-top: 2.5rem;
+        padding-top: 1.2rem;
         font-family: Roboto;
-        font-size: 5rem;
+        font-size: 3rem;
         
     }
 `;
 
 export const ContainerRight = styled.div`
     display: inline;
-    padding-top: 3.6rem;
+    padding-top: 1.5rem;
     padding-right: 1rem;
 
     button{
         
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
         overflow: none;
         border-radius: 1rem;
         justify-content: center;
@@ -71,7 +73,7 @@ export const ContainerRight = styled.div`
         width: 100%;
         height: 100%;
         
-        padding-top: 7px;
+        padding-top: 0.3rem;
         
         background-color: black;
         color: #fff;
@@ -88,5 +90,5 @@ export const ContainerRight = styled.div`
 
 export const DivPai = styled.div`
     padding-left: 20px;
-   
 `;
+

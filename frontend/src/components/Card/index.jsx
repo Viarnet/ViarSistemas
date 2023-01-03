@@ -23,12 +23,13 @@ export function Card({tipo, valor, index, handleOnClickIncrease, handleOnClickDe
     <DivPai>
         <Container>
             <ContainerLeft>
-              <h6 style={{position: 'absolute', paddingLeft: '2%'}}>{Tipos[index]}</h6>
+              {tipo ? <h6 style={{position: 'absolute', paddingLeft: '2%'}}>{Tipos[index]}</h6> :
+              <h6 style={{position: 'absolute', paddingLeft: '2%'}}>Total</h6>}
               <p style={{position: 'absolute', paddingLeft: '2%'}}>{valor}</p>
             </ContainerLeft>
             <ContainerRight>
-              <button onClick={() => handleOnClickIncrease(index)}><i className='bx bx-plus'></i></button>
-              <button onClick={() => handleOnClickDecrease(index)}><i className='bx bx-minus'></i></button>
+            {tipo  ? <button onClick={() => handleOnClickIncrease(index)}><i className='bx bx-plus'></i></button>:""}
+            {tipo ? <button onClick={() => handleOnClickDecrease(index)}><i className='bx bx-minus'></i></button>: ""}
             </ContainerRight>
         </Container>
     </DivPai>

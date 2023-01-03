@@ -19,3 +19,22 @@ export const Input = styled.input`
         border: 10px solid #2F4F4F;
     }
 `;
+
+export const Select = styled.select`
+    border-radius: 8px;
+    width: 150px;
+    text-align: center;
+
+    select:focus{
+        border: 10px solid #2F4F4F;
+    }
+`;
+
+export const CardRoteador = styled.div`
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 20px;
+    
+`;

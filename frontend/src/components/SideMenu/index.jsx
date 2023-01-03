@@ -74,6 +74,7 @@ function SideMenu() {
         </div>
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Suporte</a></li>
+          <li><Link to='gerencia'>Gerência</Link></li>
           <li><Link to='atendimentos'>Atendimentos</Link></li>
           <li><Link to='registrar'>Registrar O.S</Link></li>
           <li><Link to='encaminhar'>Encaminhar O.S</Link></li>
@@ -109,9 +110,10 @@ function SideMenu() {
 
       </div>
       <div className="name-job">
-        <div className="profile_name">{`${auth.user.name.split(" ")[0]} ${auth.user.name.split(" ")[1]}`}</div>
+        <div className="profile_name">{`${auth.user.name.split(" ")[0]}`}</div>
         <div className="job">
           {auth.user.role == 6 && "Adminstrador"}
+          {auth.user.role == 5 && "Supervisor"}
           {auth.user.role == 3 && "Suporte"}
           {auth.user.role == 0 && "Comercial"}
         </div>

@@ -22,9 +22,8 @@ export async function createAtendimento(req, res) {
       visitatecnica,
       user
      } = req.body;
-
-
-      const atendimento = await Atendimento.findOneAndUpdate({data},{
+      console.log(req.body)
+       const atendimento = await Atendimento.findOneAndUpdate({data},{
         data,
         alteracaodetitularidade,
         atribuiripfixo,
@@ -42,7 +41,7 @@ export async function createAtendimento(req, res) {
         user
       },{
         new: true
-      });
+      }).where('user').equals(user);
 
       if(atendimento){
         return res.status(201).json(atendimento);
