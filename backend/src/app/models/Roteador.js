@@ -5,6 +5,10 @@ export const Roteador = model('Roteador', new Schema({
     type: String,
     required: true,
   },
+  marca: {
+    type: String,
+    required: true,
+  },
   compatibilidade: {
     type: String,
     required: true,

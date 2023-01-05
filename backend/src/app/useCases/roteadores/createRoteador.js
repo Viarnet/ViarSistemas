@@ -1,4 +1,3 @@
-import { Atendimento } from '../../models/Atendimento.js';
 import { Roteador } from '../../models/Roteador.js';
 
 export async function createRoteador(req, res) {
@@ -8,6 +7,7 @@ export async function createRoteador(req, res) {
 
     const {
       nome,
+      marca,
       compatibilidade,
       wan,
       lan,
@@ -19,6 +19,7 @@ export async function createRoteador(req, res) {
 
     const roteado = await Roteador.findOneAndUpdate({nome},{
       nome,
+      marca,
       compatibilidade,
       wan,
       lan,
@@ -35,6 +36,7 @@ export async function createRoteador(req, res) {
     } else {
       const roteado2 = await Roteador.create({
         nome,
+        marca,
         compatibilidade,
         wan,
         lan,

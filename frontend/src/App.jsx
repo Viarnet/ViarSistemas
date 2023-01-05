@@ -11,6 +11,7 @@ import { Cadastrar } from './pages/Cadastrar';
 import { Listar } from './pages/Listar';
 import { Atendimentos } from './pages/Atendimentos';
 import { Gerencia } from './pages/Gerencia';
+import { Compatibilidade } from './pages/Compatibilidade';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
       <Route path='privadaadmin' element={ <RequireAuth role={6}><PrivateAdmin /></RequireAuth> }/>
       <Route path='cadastrar' element={ <RequireAuth role={6}><Cadastrar /></RequireAuth> }/>
       <Route path='listar' element={ <RequireAuth role={6}><Listar /></RequireAuth> }/>
+      <Route path='compatibilidade' element={ <RequireAuth role={2}><Compatibilidade /></RequireAuth> }/>
     </Route>
   </Routes>
     

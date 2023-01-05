@@ -11,6 +11,7 @@ import { AuthMiddlewares } from './app/middlewares/auth.js';
 import { createAtendimento } from './app/useCases/atendimentos/createAtendimento.js';
 import { listAtendimentos } from './app/useCases/atendimentos/listAtendimentos.js';
 import { listAtendimentosByUser } from './app/useCases/atendimentos/listAtendimentosByUser.js';
+import { relatorioMensal } from './app/useCases/atendimentos/relatorioMensal.js';
 import { AuthController } from './app/useCases/authorization/AuthController.js';
 import { TokenValidate } from './app/useCases/authorization/TokenValidate.js';
 import { createOS } from './app/useCases/ordens/createOS.js';
@@ -18,6 +19,7 @@ import { findContract } from './app/useCases/ordens/findContract.js';
 import { findOrdem } from './app/useCases/ordens/findOrdem.js';
 import { createRoteador } from './app/useCases/roteadores/createRoteador.js';
 import { listRoteadores } from './app/useCases/roteadores/listRoteadores.js';
+import { listRoteadoresByMarca } from './app/useCases/roteadores/listRoteadoresByMarca.js';
 import { createUser } from './app/useCases/users/createUser.js';
 import { deleteUser } from './app/useCases/users/deleteUser.js';
 import { listUser } from './app/useCases/users/listUser.js';
@@ -32,7 +34,7 @@ const upload = multer({
       callback(null, path.resolve(__dirname, '..', 'uploads'));
     },
     filename(req, file, callback){
-      callback(null, `${uuidv4()}.jpg`);
+      callback(null, `${uuidv4()}.png`);
     },
   }),
 });
@@ -42,6 +44,9 @@ router.post('/roteadores/create', upload.single('image'), createRoteador);
 
 //Listar Roteadores
 router.get('/roteadores', listRoteadores);
+
+//Listar Roteadores por marca
+router.get('/roteadores/:marca', listRoteadoresByMarca);
 
 //Criar usuario
 router.post('/users/create', createUser);
@@ -73,6 +78,9 @@ router.get('/atendimentos/:userId', AuthMiddlewares, listAtendimentosByUser);
 
 //Listar Atendimentos
 router.get('/atendimentos', AuthMiddlewares, listAtendimentos);
+
+//Relatorio Mensal
+router.get('/relatorio/:data', relatorioMensal);
 
 //Buscar contratos do cliente
 router.get('/os/getcontracts/:nomeCliente',  findContract);

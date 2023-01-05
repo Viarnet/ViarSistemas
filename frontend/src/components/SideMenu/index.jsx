@@ -10,6 +10,7 @@ function SideMenu() {
   const [showSubMenu2, setShowSubMenu2] = useState(false)
   const [showSubMenu3, setShowSubMenu3] = useState(false)
   const [showSubMenu4, setShowSubMenu4] = useState(false)
+  const [showSubMenu5, setShowSubMenu5] = useState(false)
   const auth = useContext(AuthContext);
 
   function handlesignout(){
@@ -61,6 +62,20 @@ function SideMenu() {
           <li><a className="link_name" href="#">Tel Movel</a></li>
           <li><Link to='privada'>Portabilidades</Link></li>
           <li><Link to='home'>Numeros Disponiveis</Link></li>
+        </ul>
+      </li>)}
+      {auth.user.role == 2 || auth.user.role == 6 && (
+      <li className={`${showSubMenu5 === true ? "showMenu" : ""}`}>
+        <div className="iocn-link" onClick={()=>setShowSubMenu5(!showSubMenu5)}>
+          <a href="#">
+            <i className='bx bxs-wallet-alt' ></i>
+            <span className="link_name">Suporte</span>
+          </a>
+          <i className='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul className="sub-menu">
+          <li><a className="link_name" href="#">Comercial</a></li>
+          <li><Link to='compatibilidade'>Compatibilidade</Link></li>
         </ul>
       </li>)}
       {auth.user.role >= 3 && (
