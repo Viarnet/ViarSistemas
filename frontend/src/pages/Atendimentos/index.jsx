@@ -283,10 +283,10 @@ export function Atendimentos() {
   return (
     <>
     {isLoading && <MiniLoading/>}
-      <Div style={{ paddingBottom: '2rem'}}>
+      <Div style={{ paddingBottom: '1rem'}}>
         <h1>Atendimentos</h1>
       </Div>
-      <Div style={{ paddingBottom: '2rem' }}>
+      <Div style={{ paddingBottom: '1rem' }}>
         <Input type="date"
           value={dataSelecionada}
           onChange={(e) => { setDataSelecionada(e.target.value) }}

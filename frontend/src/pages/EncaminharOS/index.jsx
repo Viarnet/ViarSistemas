@@ -12,6 +12,7 @@ import './style.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import axios from 'axios';
+import { SelectComponent } from "../../components/SelectComponent";
 
 export const EncaminharOS = () => {
     const Provider = useContext(AuthContext)
@@ -124,12 +125,12 @@ export const EncaminharOS = () => {
             <h1>Encaminhar Ordens de Serviço</h1>
             </div>
             <div style={{display: "flex", columnGap: "10px", paddingBottom: '2%'}}>
-                <label htmlFor="sel" style={{paddingTop: '2px'}}>Selecione o Assunto:</label>
-                <select value={select} onChange={e=>setSelect(e.target.value)} style={{border: '2px solid black', borderRadius: '6px'}}>
+                <label htmlFor="sel" style={{display: 'flex', alignItems: 'center'}}>Selecione o Assunto:</label>
+                <SelectComponent value={select} handleOnChange={e=>setSelect(e.target.value)}>
                     <option>Recolha de equipamentos</option>
                     <option>Liberação de portas</option>
-                </select>
-                {os.length > 0 ? <input type="text" className="search" id="search" onChange={(e) => {setTerm(e.target.value)}} placeholder="Filtrar..." style={{border: '2px solid black', borderRadius: '6px', textAlign: 'center'}}></input> : <></>}
+                </SelectComponent>
+                {os.length > 0 ? <input type="text" size={20} id="search" onChange={(e) => {setTerm(e.target.value)}} placeholder="Filtrar..." style={{border: '2px solid black', borderRadius: '6px', textAlign: 'center'}}></input> : <></>}
                 <Button onClick={() => { handleSearch(select) }}><i className='bx bx-search'></i></Button>
             </div>
             {loading && <MiniLoading/>}

@@ -3,8 +3,8 @@ import { Div, Input } from './styles';
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { ModalComponent } from './../../components/ModalComponent';
 import { CardRoteador } from '../../components/CardRoteador';
-import './styles.css'
 import axios from 'axios';
+import { SelectComponent } from '../../components/SelectComponent';
 
 export function Compatibilidade() {
 
@@ -61,8 +61,7 @@ export function Compatibilidade() {
                 <h1>Compatibilidade</h1>
             </Div>
             <Div>
-            <div className="select">
-                <select value={marca} onChange={e => setMarca(e.target.value)} >
+                <SelectComponent value={marca} handleOnChange={e => setMarca(e.target.value)}>
                     <option value="TP-LINK">TP-Link</option>
                     <option value="D-LINK">D-Link</option>
                     <option value="MERCUSYS">Mercusys</option>
@@ -70,8 +69,7 @@ export function Compatibilidade() {
                     <option value="FIBERHOME">Fiberhome</option>
                     <option value="UBIQUITI">Ubiquiti</option>
                     <option value="INTELBRAS">Intelbras</option>
-                </select>
-            </div>
+                </SelectComponent>
             </Div>
             <Div>
                 {roteadores && roteadores.map((roteador, index) => 

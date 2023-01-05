@@ -3,6 +3,7 @@ import { CardRoteador, Div, Input, Select } from './styles';
 import { Chart } from "react-google-charts";
 
 import axios from 'axios';
+import { SelectComponent } from '../../components/SelectComponent';
 
 const today = new Date();
 let todayMonth = (today.getMonth() + 1).toString().padStart(2, 0);
@@ -38,7 +39,7 @@ export function Gerencia() {
                 <h1>Gerência</h1>
             </Div>
             <Div>
-                <Select value={month} onChange={e => setMonth(e.target.value)}>
+                <SelectComponent value={month} handleOnChange={e => setMonth(e.target.value)}>
                     <option>Selecione o Mês</option>
                     <option value="01">Janeiro</option>
                     <option value="02">Fevereiro</option>
@@ -52,7 +53,7 @@ export function Gerencia() {
                     <option value="10">Outubro</option>
                     <option value="11">Novembro</option>
                     <option value="12">Dezembro</option>
-                </Select>
+                </SelectComponent>
             </Div>
             {relatorio && <h3>Total de Atendimentos no Mês: {relatorio.total}</h3>}
             {relatorio && Object.keys(relatorio.counts).map((colaborador)=> <h3>{colaborador}: {relatorio.counts[colaborador]}</h3>)}
