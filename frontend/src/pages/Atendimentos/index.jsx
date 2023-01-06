@@ -282,7 +282,6 @@ export function Atendimentos() {
 
   return (
     <>
-    {isLoading && <MiniLoading/>}
       <Div style={{ paddingBottom: '1rem'}}>
         <h1>Atendimentos</h1>
       </Div>

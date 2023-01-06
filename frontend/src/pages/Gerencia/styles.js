@@ -38,3 +38,8 @@ export const CardRoteador = styled.div`
     margin: 20px;
     
 `;
+
+export const Graficos = styled.div`
+    display: flex;
+    justify-content: center;
+`;

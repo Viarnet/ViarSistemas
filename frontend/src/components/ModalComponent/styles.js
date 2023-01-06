@@ -8,6 +8,7 @@ export const Container = styled.div`
     right: 0;
     bottom: 0;
     position: fixed;
+    z-index: 20;
 `;
 
 export const Overlay = styled.div`
@@ -19,6 +20,7 @@ export const Overlay = styled.div`
     bottom: 0;
     position: fixed;
     background: rgba(49,49,49,0.8);
+    z-index: auto;
 `;
 
 export const ModalContainer = styled.div`
@@ -27,7 +29,7 @@ export const ModalContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
@@ -38,6 +40,7 @@ export const ModalContainer = styled.div`
     min-width: 500px;
     min-height: 200px;
     font-size: 12px;
+    z-index: auto;
 `;
 
 
@@ -67,7 +70,8 @@ export const Title = styled.h2`
 `;
 export const Subtitle = styled.h4`
 `;
-export const ComponentContainer = styled.div``;
+export const ComponentContainer = styled.div`
+`;
 export const Header = styled.div`
     display: flex;
     flex-direction: row;
@@ -85,6 +89,7 @@ export const Footer = styled.div`
     align-items: center;
     bottom: 0;
     margin: 10px;
+    z-index: 20;
 `;
 export const ButtonSim = styled.button``;
 export const ButtonNao = styled.button``;

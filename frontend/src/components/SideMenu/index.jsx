@@ -45,8 +45,8 @@ function SideMenu() {
         </div>
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Tel Fixa</a></li>
-          <li><Link to='home'>Portabilidades</Link></li>
-          <li><Link to='privadaadmin'>Numeros Disponiveis</Link></li>
+          <li><Link to='portabilidades-fixas'>Portabilidades</Link></li>
+          <li><Link to='numerosfixodisponiveis'>Numeros Disponiveis</Link></li>
         </ul>
       </li>)}
       {auth.user.role == 0 || auth.user.role == 6 && (
@@ -60,8 +60,8 @@ function SideMenu() {
         </div>
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Tel Movel</a></li>
-          <li><Link to='privada'>Portabilidades</Link></li>
-          <li><Link to='home'>Numeros Disponiveis</Link></li>
+          <li><Link to='portabilidades-movel'>Portabilidades</Link></li>
+          {/* <li><Link to='home'>Numeros Disponiveis</Link></li> */}
         </ul>
       </li>)}
       {auth.user.role == 2 || auth.user.role == 6 && (
@@ -69,13 +69,14 @@ function SideMenu() {
         <div className="iocn-link" onClick={()=>setShowSubMenu5(!showSubMenu5)}>
           <a href="#">
             <i className='bx bxs-wallet-alt' ></i>
-            <span className="link_name">Suporte</span>
+            <span className="link_name">Comercial</span>
           </a>
           <i className='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Comercial</a></li>
           <li><Link to='compatibilidade'>Compatibilidade</Link></li>
+          <li><Link to='registrarot'>Registrar Roteador</Link></li>
         </ul>
       </li>)}
       {auth.user.role >= 3 && (

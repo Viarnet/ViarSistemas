@@ -14,6 +14,7 @@ export function Compatibilidade() {
     const [marca, setMarca] = useState("TP-LINK");
     const [isTitle, setIsTitle] = useState("");
     const [isBody, setIsBody] = useState();
+    const [term, setTerm] = useState("");
     
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export function Compatibilidade() {
     function BodyModal({dados}){
         return (
             <>
-            <img src={`http://192.168.0.95:3333/uploads/${dados.imagePath}`} style={{width: "13rem"}}/>
+            <img src={`http://192.168.0.95:3333/uploads/${dados.imagePath}`} style={{width: 200, height: 220}}/>
             <div style={{fontSize: '1rem'}}>
                 <h4>Marca: {dados.marca}</h4>
                 <h4>Nome: {dados.nome}</h4>
@@ -69,10 +70,22 @@ export function Compatibilidade() {
                     <option value="FIBERHOME">Fiberhome</option>
                     <option value="UBIQUITI">Ubiquiti</option>
                     <option value="INTELBRAS">Intelbras</option>
+                    <option value="XIAOMI">Xiaomi</option>
+                    <option value="MULTILASER">Multilaser</option>
+                    <option value="MIKROTIK">Mikrotik</option>
                 </SelectComponent>
             </Div>
+            <Div style={{paddingLeft: '50rem'}}>
+                <Input type={'text'} placeholder='Pesquisar' onChange={(e) => {setTerm(e.target.value)}}></Input>
+            </Div>
             <Div>
-                {roteadores && roteadores.map((roteador, index) => 
+                {roteadores && roteadores.filter((val)=>{
+                    if(term == ""){
+                        return val;
+                    }else if (val.nome.toLowerCase().includes(term.toLowerCase())){
+                        return val
+                    }
+                    }).map((roteador, index) => 
                     <CardRoteador 
                         key={index} 
                         dados={roteador}

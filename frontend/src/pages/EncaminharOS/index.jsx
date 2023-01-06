@@ -130,7 +130,7 @@ export const EncaminharOS = () => {
                     <option>Recolha de equipamentos</option>
                     <option>Liberação de portas</option>
                 </SelectComponent>
-                {os.length > 0 ? <input type="text" size={20} id="search" onChange={(e) => {setTerm(e.target.value)}} placeholder="Filtrar..." style={{border: '2px solid black', borderRadius: '6px', textAlign: 'center'}}></input> : <></>}
+                {os.length > 0 ? <input type="text" className="search" id="search" onChange={(e) => {setTerm(e.target.value)}} placeholder="Filtrar..." style={{border: '2px solid black', borderRadius: '6px', textAlign: 'center', backgroundColor: '#2c3e50', color: 'white'}}></input> : <></>}
                 <Button onClick={() => { handleSearch(select) }}><i className='bx bx-search'></i></Button>
             </div>
             {loading && <MiniLoading/>}

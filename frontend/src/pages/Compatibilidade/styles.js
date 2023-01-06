@@ -13,12 +13,18 @@ export const Div = styled.div`
 
 export const Input = styled.input`
     border-radius: 8px;
-    width: 150px;
+    width: 15rem;
     text-align: center;
+    background-color: #2c3e50;
+    color: white;
+    
    
-
+     
     input:focus{
         border: 10px solid #2F4F4F;
+    }
+    ::placeholder{
+      color: white;
     }
 `;
 
@@ -78,7 +84,7 @@ a {
 export const CardRoteador = styled.div`
     background-color: white;
     border: 1px solid black;
-    padding: 0.2rem;
+    padding: 0.5rem;
     border-radius: 10px;
     width: 12rem;
     margin: 1rem;

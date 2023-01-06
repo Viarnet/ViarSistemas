@@ -18,5 +18,10 @@
 
 
   ::placeholder {
-    text-align: center; 
+    text-align: center;
+    color: white; 
+ }
+
+ input{
+  color: #2c3e50;
  }

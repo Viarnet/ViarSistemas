@@ -1,0 +1,10 @@
+.port-body{
+    display: flex;
+    flex-direction: column;
+    width: 94vw;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+

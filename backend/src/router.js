@@ -20,6 +20,10 @@ import { findOrdem } from './app/useCases/ordens/findOrdem.js';
 import { createRoteador } from './app/useCases/roteadores/createRoteador.js';
 import { listRoteadores } from './app/useCases/roteadores/listRoteadores.js';
 import { listRoteadoresByMarca } from './app/useCases/roteadores/listRoteadoresByMarca.js';
+import { listNumerosFixoDisponiveis } from './app/useCases/telefonia/listNumerosFixoDisponiveis.js';
+import { listPortabilidadesFixa } from './app/useCases/telefonia/listPortabilidadesFixa.js';
+import { listPortabilidadesMovel } from './app/useCases/telefonia/listPortabilidadesMovel.js';
+import { reservarNumeroFixo } from './app/useCases/telefonia/reservarNumeroFixo.js';
 import { createUser } from './app/useCases/users/createUser.js';
 import { deleteUser } from './app/useCases/users/deleteUser.js';
 import { listUser } from './app/useCases/users/listUser.js';
@@ -93,3 +97,15 @@ router.post('/os/create',  createOS);
 
 //Editar OS
 router.post('/os/edit',  createOS);
+
+//Listar Numeros Disponiveis Fixo
+router.get('/telefonia-fixa/disponiveis/:cidade', listNumerosFixoDisponiveis);
+
+//Listar Portabilidades Fixa
+router.get('/telefonia-fixa/portabilidades-fixa', listPortabilidadesFixa);
+
+//Listar Portabilidades Fixa
+router.get('/telefonia-fixa/portabilidades-movel', listPortabilidadesMovel);
+
+//Reservar Numero Fixo
+router.get('/telefonia-fixa/reservar/:cidade/:numero/:reserva/:vendedor', reservarNumeroFixo);
