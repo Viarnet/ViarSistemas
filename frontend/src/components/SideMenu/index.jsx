@@ -34,7 +34,7 @@ function SideMenu() {
           <li><a className="link_name" href="#">Pagina Inicial</a></li>
         </ul>
       </li>
-      {auth.user.role == 0 || auth.user.role == 6 && (
+      {auth.user.role == 0 | auth.user.role == 6 | auth.user.role == 5 && (
       <li className={`${showSubMenu === true ? "showMenu" : ""}`}>
         <div className="iocn-link" onClick={()=>setShowSubMenu(!showSubMenu)}>
           <a href="#">
@@ -49,7 +49,7 @@ function SideMenu() {
           <li><Link to='numerosfixodisponiveis'>Numeros Disponiveis</Link></li>
         </ul>
       </li>)}
-      {auth.user.role == 0 || auth.user.role == 6 && (
+      {auth.user.role == 0 | auth.user.role == 6 | auth.user.role == 5 && (
       <li className={`${showSubMenu2 === true ? "showMenu" : ""}`}>
         <div className="iocn-link"  onClick={()=>setShowSubMenu2(!showSubMenu2)}>
           <a href="#">
@@ -64,7 +64,7 @@ function SideMenu() {
           {/* <li><Link to='home'>Numeros Disponiveis</Link></li> */}
         </ul>
       </li>)}
-      {auth.user.role == 2 || auth.user.role == 6 && (
+      {auth.user.role == 0 | auth.user.role == 6 | auth.user.role == 5 && (
       <li className={`${showSubMenu5 === true ? "showMenu" : ""}`}>
         <div className="iocn-link" onClick={()=>setShowSubMenu5(!showSubMenu5)}>
           <a href="#">
@@ -76,10 +76,10 @@ function SideMenu() {
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Comercial</a></li>
           <li><Link to='compatibilidade'>Compatibilidade</Link></li>
-          <li><Link to='registrarot'>Registrar Roteador</Link></li>
+          {auth.user.role == 6 | auth.user.role == 5 ? <li><Link to='registrarot'>Registrar Roteador</Link></li>: ""}
         </ul>
       </li>)}
-      {auth.user.role >= 3 && (
+      {auth.user.role == 3 | auth.user.role == 6 | auth.user.role == 5 &&(
       <li className={`${showSubMenu3 === true ? "showMenu" : ""}`}>
         <div className="iocn-link" onClick={()=>setShowSubMenu3(!showSubMenu3)}>
           <a href="#">
@@ -90,7 +90,7 @@ function SideMenu() {
         </div>
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Suporte</a></li>
-          <li><Link to='gerencia'>Gerência</Link></li>
+          {auth.user.role == 6 | auth.user.role == 5 ? <li><Link to='gerencia'>Gerência</Link></li>: ""}
           <li><Link to='atendimentos'>Atendimentos</Link></li>
           <li><Link to='registrar'>Registrar O.S</Link></li>
           <li><Link to='encaminhar'>Encaminhar O.S</Link></li>
@@ -111,15 +111,6 @@ function SideMenu() {
           <li><Link to='listar'>Listar</Link></li>
         </ul>
       </li>)}
-      <li>
-        <a href="#">
-          <i className='bx bx-cog' ></i>
-          <span className="link_name">Configurações</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">Configurações</a></li>
-        </ul>
-      </li>
       <li>
     <div className="profile-details">
       <div className="profile-content">
@@ -143,7 +134,7 @@ function SideMenu() {
     <div className="home-content">
       <i className='bx bx-menu' onClick={()=>setShowMenu(!showMenu)}></i>
     </div>
-    <Outlet />
+    <Outlet /> 
   </section>
     </>
   )

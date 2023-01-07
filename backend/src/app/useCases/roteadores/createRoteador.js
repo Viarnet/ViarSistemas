@@ -4,7 +4,6 @@ export async function createRoteador(req, res) {
   try {
     const imagePath = req.file?.filename;
 
-
     const {
       nome,
       marca,

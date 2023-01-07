@@ -22,15 +22,16 @@ function App() {
   return (
     <Routes>
     <Route path='/login' element={ <Login /> }/>
-    <Route path='/' element={ <Layout /> }>
+    <Route path='/*' element={ <Layout /> }>
       {/* ROTAS GERAIS */}
+      <Route index element={ <RequireAuth role={0}><Home /></RequireAuth> }/>
       <Route path='home' element={ <RequireAuth role={0}><Home /></RequireAuth> }/>
       
       {/* ROTAS PARA O COMERCIAL */}
-      <Route path='compatibilidade' element={ <RequireAuth role={2}><Compatibilidade /></RequireAuth> }/>
-      <Route path='numerosfixodisponiveis' element={ <RequireAuth role={2}><FixoDisponiveis /></RequireAuth> }/>
-      <Route path='portabilidades-fixas' element={ <RequireAuth role={2}><PortabilidadesFixa /></RequireAuth> }/>
-      <Route path='portabilidades-movel' element={ <RequireAuth role={2}><PortabilidadesMovel /></RequireAuth> }/>
+      <Route path='compatibilidade' element={ <RequireAuth role={0}><Compatibilidade /></RequireAuth> }/>
+      <Route path='numerosfixodisponiveis' element={ <RequireAuth role={0}><FixoDisponiveis /></RequireAuth> }/>
+      <Route path='portabilidades-fixas' element={ <RequireAuth role={0}><PortabilidadesFixa /></RequireAuth> }/>
+      <Route path='portabilidades-movel' element={ <RequireAuth role={0}><PortabilidadesMovel /></RequireAuth> }/>
 
       {/* ROTAS PARA O SUPORTE */}
       <Route path='atendimentos' element={ <RequireAuth role={3}><Atendimentos /></RequireAuth> }/>

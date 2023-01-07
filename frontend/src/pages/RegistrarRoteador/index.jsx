@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, FormContainer, InputText } from "./styles.js";
+import { Container, FormContainer, InputText } from "./styles.js";
 import { ButtonComponent } from "../../components/Button";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,7 +17,8 @@ export function RegistrarRoteador() {
     const [redeswifi, setRedeswifi] = useState("");
     const [cobertura2g, setCobertura2g] = useState("");
     const [cobertura5g, setCobertura5g] = useState("");
-    const [image, setImage] = useState();
+    const [image, setImage] = useState([]);
+    const [compatibilidade, setCompatibilidade] = useState("");
     const [loading, setLoading] = useState(false);
     
     const options = [
@@ -35,73 +36,54 @@ export function RegistrarRoteador() {
 
     async function handleOnSubmit() {
 
-        // if (marca && nome && wan && lan && id) {
-        //     setLoading(true)
-        //     await axios.post('http://192.168.0.95:3333/users/create', {
-        //         name: nome,
-        //         email,
-        //         password: senha,
-        //         role: Number(setor),
-        //         id_colaborador: Number(id)
-        //     }).then(({ data }) => {
-        //         if (data.error) {
-        //             if (data.error == "O usuario já existe!") {
-        //                 setLoading(false)
-        //                 toast.error("O Cadastro já Existe!", {
-        //                     position: "top-right",
-        //                     autoClose: 3000,
-        //                     hideProgressBar: false,
-        //                     closeOnClick: true,
-        //                     pauseOnHover: true,
-        //                     draggable: true,
-        //                     progress: undefined,
-        //                     theme: "dark",
-        //                 });
-        //             } else {
-        //                 setLoading(false)
-        //                 toast.error("Houve um Erro!", {
-        //                     position: "top-right",
-        //                     autoClose: 3000,
-        //                     hideProgressBar: false,
-        //                     closeOnClick: true,
-        //                     pauseOnHover: true,
-        //                     draggable: true,
-        //                     progress: undefined,
-        //                     theme: "dark",
-        //                 });
-        //             }
-        //         } else {
-        //             setNome("");
-        //             setEmail("");
-        //             setId("");
-        //             setSenha("");
-        //             setSetor("");
-        //             setLoading(false);
+        if (marca && nome && wan && lan && redeswifi && cobertura2g && cobertura5g && image) {
+            setLoading(true);
 
-        //             toast.success(`Cadastro ${email} criado com sucesso!`, {
-        //                 position: "top-right",
-        //                 autoClose: 3000,
-        //                 hideProgressBar: false,
-        //                 closeOnClick: true,
-        //                 pauseOnHover: true,
-        //                 draggable: true,
-        //                 progress: undefined,
-        //                 theme: "dark",
-        //             });
-        //         }
-        //     })
-        // } else {
-        //     toast.error("Preencha todos os Dados!", {
-        //         position: "top-right",
-        //         autoClose: 3000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "dark",
-        //     });
-        // }
+            let form = new FormData();
+
+            form.append('marca', marca);
+            form.append('nome', nome);
+            form.append('wan', wan);
+            form.append('lan', lan);
+            form.append('compatibilidade', compatibilidade);
+            form.append('redeswifi', redeswifi);
+            form.append('cobertura2g', cobertura2g);
+            form.append('cobertura5g', cobertura5g);
+            form.append('image', image);
+
+            const url = 'http://192.168.0.95:3333/roteadores/create';
+
+            const response = await axios({
+                method: 'post',
+                data: form,
+                url: url,
+                headers: { "Content-Type": "multipart/form-data" }
+            })
+            toast.success("Roteador criado com sucesso", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            setLoading(false);
+
+
+        } else {
+            toast.error("Preencha todos os Dados!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
     }
 
 
@@ -134,6 +116,10 @@ export function RegistrarRoteador() {
                 }}
                     onChange={(e) => { setMarca(e.value) }}
                 />
+                <InputText type='text' placeholder="Compatibilidade"
+                    value={compatibilidade}
+                    onChange={(e) => { setCompatibilidade(e.target.value) }}
+                />
                 <InputText type='text' placeholder="WAN"
                     value={wan}
                     onChange={(e) => { setWan(e.target.value) }}
@@ -155,8 +141,7 @@ export function RegistrarRoteador() {
                     onChange={(e) => { setCobertura5g(e.target.value) }}
                 />
                 <InputText type='file' placeholder="Imagem"
-                    value={image}
-                    onChange={(e) => { setImage(e.target.value) }}
+                    onChange={(e) => { setImage(e.target.files[0]) }}
                 />
                 <ButtonComponent Click={handleOnSubmit} loading={loading}>Cadastrar</ButtonComponent>
             </FormContainer>
